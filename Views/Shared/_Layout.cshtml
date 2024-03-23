@@ -7,24 +7,53 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LibraryProject.styles.css" asp-append-version="true" />
+
+    <style>
+        /* Custom CSS for navbar */
+        .navbar {
+            background-color: #007bff !important; /* Blue color */
+        }
+
+        /* Style for the navbar brand link */
+        .navbar-brand {
+            color: #ffffff !important; /* White color */
+            font-weight: bold !important;
+            font-size: 24px !important; /* Larger font size */
+            font-family: Arial, sans-serif !important; /* Professional font */
+        }
+
+            /* Style for the navbar brand link on hover */
+            .navbar-brand:hover {
+                color: #ffffff !important; /* White color */
+                opacity: 0.8 !important;
+                text-decoration: none !important;
+            }
+
+        /* Custom CSS for footer */
+        .footer {
+            background-color: #007bff !important; /* Blue color */
+            color: #ffffff !important; /* White color */
+            text-align: center !important;
+            padding: 10px 0 !important;
+        }
+    </style>
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibraryProject</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="font-family: Arial, sans-serif;">
+                    <img src="\img\logo.jpg" alt="The Hilton Library Logo" style="height: 100px; width: auto;">
+                </a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="font-family: Arial, sans-serif;">The Hilton Library</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @* Insert any links you may have in the is spot*@
                     </ul>
                 </div>
             </div>
@@ -38,7 +67,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - LibraryProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - LibraryProject
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

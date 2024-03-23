@@ -1,8 +1,34 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "The Hilton Library";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model BookListViewModel
+
+<style>
+    .book-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+</style>
+
+@foreach (Book b in Model.Books)
+{
+    <div class="book-title">
+        <h3>@b.Title</h3>
+        <h6>$@b.Price</h6>
+    </div>
+
+    <h6>@b.Classification</h6>
+    <p>Written by @b.Author</p>
+    <ul>
+        <li>Published by @b.Publisher</li>
+        <li>Pages @b.PageCount</li>
+        <li>ISBN: @b.Isbn</li>
+    </ul>
+}
+
+<div page-model="@Model.PaginationInfo" page-action="Index">
 </div>
+

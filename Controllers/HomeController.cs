@@ -1,4 +1,5 @@
 using LibraryProject.Models;
+using LibraryProject.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,27 +7,34 @@ namespace LibraryProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private IBookRepository _repo;
+        
+        public HomeController(IBookRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int pageNum)
         {
-            return View();
-        }
+            int pageSize = 10;
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            var BookObject = new BookListViewModel
+            {
+                Books = _repo.Books
+                     .OrderBy(x => x.Title)
+                     .Skip((pageNum - 1) * pageSize)
+                     .Take(pageSize),
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ItemsPerPage = pageSize,
+                    TotalItems = _repo.Books.Count()
+                }
+
+            };
+            
+            return View(BookObject);
         }
     }
 }
