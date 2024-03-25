@@ -4,31 +4,10 @@
 
 @model BookListViewModel
 
-<style>
-    .book-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-</style>
-
 @foreach (Book b in Model.Books)
 {
-    <div class="book-title">
-        <h3>@b.Title</h3>
-        <h6>$@b.Price</h6>
-    </div>
-
-    <h6>@b.Classification</h6>
-    <p>Written by @b.Author</p>
-    <ul>
-        <li>Published by @b.Publisher</li>
-        <li>Pages @b.PageCount</li>
-        <li>ISBN: @b.Isbn</li>
-    </ul>
+    <partial name="BookList" model="b" />
 }
 
-<div page-model="@Model.PaginationInfo" page-action="Index">
-</div>
+<div page-model="@Model.PaginationInfo" page-action="Index" page-class-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
 
