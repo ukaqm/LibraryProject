@@ -14,13 +14,14 @@ namespace LibraryProject.Controllers
             _repo = temp;
         }
 
-        public IActionResult Index(int pageNum)
+        public IActionResult Index(int pageNum, string bookGenre)
         {
             int pageSize = 10;
 
             var BookObject = new BookListViewModel
             {
                 Books = _repo.Books
+                     .Where(x => x.Classification == bookGenre || bookGenre == null)
                      .OrderBy(x => x.Title)
                      .Skip((pageNum - 1) * pageSize)
                      .Take(pageSize),

@@ -1,0 +1,16 @@
+﻿@{
+}
+
+@model IQueryable<string>
+
+<div class="d-grid gap-2">
+    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index" asp-route-bookGenre="">Home</a>
+
+    @foreach(string bg in Model ?? Enumerable.Empty<string>())
+    {
+        <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index" asp-route-bookGenre="@bg" asp-route-pageNum="1">
+            @bg
+        </a>
+    }
+
+</div>
